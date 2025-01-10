@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f0f1e; /* Dark background */
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    section {
+      max-width: 100%;
+      margin: 20px auto;
+      background-color: transparent;
+      color: white;
+    }
+    
+    .chart-container3 {
+      position: relative;
+      height: 300px;
+      padding-left: 60px;
+      padding-right: 40px;
+      padding-bottom: 20px;
+      
+    }
+
+    .y-axis-labels3 {
+      position: absolute;
+      top: 175px;
+      left: 0;
+      max-width: 20%;
+      text-align: right;
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.863);
+      height: calc(97% - 70%); /* Adjust based on padding */
+      display: flex;
+      /* background-color: red; */
+      flex-direction: column;
+      justify-content:space-between;
+    }
+
+
+    .x-axis-labels3 {
+      position: absolute;
+      bottom: -10px;
+      left: 73px;
+      display: flex;
+      justify-content: space-around;
+      width: calc(100% - 120px); /*Adjust for padding*/
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.863);
+
+    }
+
+    .bars3 {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+      height: 100%;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    .bar3 {
+      flex: 1;
+      max-width: 75%;
+      background-color:#39395f6c;/* Static semi-transparent background */
+      text-align: center;
+      color: white;
+      font-size: 0.8rem;
+      z-index: 3 !important;
+      position: relative;
+      animation: border-animate-reverse 1.5s linear forwards;
+      overflow: visible; /* Ensures corner lines are visible */
+      border: 1px solid #70707081; /* Border color */
+      transition: box-shadow 0.4s ease-in-out, background-color 0.4s ease-in-out;
+    }
+    /* .bar:hover::after{
+      animation: border-move 3.5s linear forwards;
+    } */
+    .barmain3 {
+      flex: 1;
+      z-index: 2 !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 12%;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      background-color:#0f0f1e; /* Static semi-transparent background */
+    }
+    .bar3:hover {
+      background-color: #506fbd38; /* Change background color on hover */
+  box-shadow: 1px 0px 15px 10px#5b78c225;
+       /* Glow effect */
+      animation: border-move 1.5s linear forwards;
+      /* border-left: 10px solid #aaa;
+      border-right: 10px solid #aaa; */
+
+    }
+
+    .bar3 .corner3 {
+      position: absolute;
+      width: 8px; /* Corner size */
+      height: 8px; /* Corner size */
+    }
+    
+    .bar3 .corner-top-left3 {
+      top: -1px;
+      left: -1px;
+      border-top: 1px solid #1954ec; /* Horizontal corner line */
+      border-left: 1px solid #1954ec; /* Vertical corner line */
+    }
+
+    .bar3 .corner-top-right3 {
+      top: -1px;
+      right: -1px;
+      border-top: 1px solid #1954ec; /* Horizontal corner line */
+      border-right: 1px solid #1954ec; /* Vertical corner line */
+    }
+
+    .bar3 .corner-bottom-left3 {
+      bottom: -1px;
+      left: -1px;
+      border-bottom: 1px solid #1954ec; /* Horizontal corner line */
+      border-left: 1px solid #1954ec; /* Vertical corner line */
+    }
+
+    .bar3 .corner-bottom-right3 {
+      bottom: -1px;
+      right: -1px;
+      border-bottom: 1px solid #1954ec; /* Horizontal corner line */
+      border-right: 1px solid #1954ec; /* Vertical corner line */
+    }
+    
+    @media screen and (max-width: 480px){ /* Tablet view */
+      .bar3 .corner3 {
+      position: absolute;
+      width: 5px; /* Corner size */
+      height: 5px; /* Corner size */
+    }
+    .grid-line3 {
+    position: absolute !important;
+    left: 80px;
+    width: calc(5% - 80px); /* Match chart container width */
+    height: 0.5px;
+    background-color: #afafaf3b; /* Line color */
+    /* position: relative !important; */
+    z-index: 0 !important;
+  }
+  .barmain3 {
+      flex: 1;
+      z-index: 2 !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 17%;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      background-color:#0f0f1e; /* Static semi-transparent background */
+    }
+    .x-axis-labels3 {
+      left: 78px;
+    }
+    .font-mobile3{
+    font-size:xx-small;
+  }
+  }
+  @media screen and (max-width: 767px){ /* Tablet view */
+      .bar3 .corner3 {
+      position: absolute;
+      width: 5px; /* Corner size */
+      height: 5px; /* Corner size */
+
+    }
+ .barmain3 {
+      flex: 1;
+      z-index: 2 !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 17%;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      background-color:#0f0f1e; /* Static semi-transparent background */
+    }
+    .grid-line3 {
+    position: absolute !important;
+    left: 80px;
+    width: calc(5% - 80px); /* Match chart container width */
+    height: 0.5px;
+    background-color: #afafaf3b; /* Line color */
+    /* position: relative !important; */
+    z-index: 0 !important;
+  }
+  .bars3 {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+      height: 100%;
+      padding-left: 20px;
+      padding-right: 10px;
+    }
+    .x-axis-labels3 {
+      left: 72px;
+    }
+    .grid-line-3m3 {
+    bottom: 130px; /* 80% height for $3 Million */
+  }
+
+  .grid-line-2m3 {
+    bottom: 80px; /* 53.33% height for $2 Million */
+  }
+
+  .grid-line-1m3 {
+    bottom: 40px; /* 26.67% height for $1 Million */
+  }
+  .font-mobile3{
+    font-size: x-small;
+  }
+  }
+
+    @keyframes border-move  {
+      100% {
+        border-color: #70707081;
+        border-top-color: #1954ec;
+        border-bottom-color: #1954ec;
+        border-left-color: #1954ec;
+        border-right-color: #1954ec;
+      }
+      75% {
+        border-right-color: #1954ec;
+        border-left-color: #1954ec;
+        border-top-color: #70707081;
+        border-bottom-color: #1954ec;
+
+      }
+      50% {
+        border-right-color: #1954ec;
+        border-left-color: #1954ec;
+        border-top-color: #70707081;
+        border-bottom-color: #1954ec;
+      }
+      25% {
+        border-left-color: #70707081;
+        border-bottom-color: #1954ec;
+        border-right-color: #70707081;
+        
+      }
+      0% {
+        border-color: #70707081;
+        /* border-top-color: #1954ec; */
+      }
+    }
+    @keyframes border-animate-reverse {
+      0% {
+        border-color: #70707081;
+      }
+      25% {
+        border-right-color: #1954ec;
+        border-top-color: #1954ec;
+        
+      }
+      50% {
+        border-left-color: #1954ec;
+        border-top-color: #70707081;
+      }
+      75% {
+        border-left-color: #70707081;
+        border-bottom-color: #1954ec;
+      }
+      100% {
+        border-color: #70707081;
+        /* border-top-color: #1954ec; */
+      }
+    }
+    .grid-line3 {
+    position: absolute !important;
+    left: 70px;
+    width: calc(85% - 60px); /* Match chart container width */
+    height: 0.5px;
+    background-color: #afafaf3b; /* Line color */
+    /* position: relative !important; */
+    z-index: 0 !important;
+  }
+
+  .grid-line-3m3 {
+    bottom: 145px; /* 80% height for $3 Million */
+  }
+
+  .grid-line-2m3{
+    bottom: 100px; /* 53.33% height for $2 Million */
+  }
+
+  .grid-line-1m3 {
+    bottom: 55px; /* 26.67% height for $1 Million */
+  }
+  </style>
+</head>
+<body>
+  <section>
+    
+    
+    <!-- Chart Container -->
+    <div class="chart-container3">
+      <!-- Y-Axis Labels -->
+      <div class="y-axis-labels3">
+        <div class="p">$3 Million</div>
+        <div class="p">$2 Million</div>
+        <div class="p">$1 Million</div>
+      </div>
+      
+      <!-- Bars -->
+      <div class="bars3">
+        
+        <div class="barmain3" data-value="$2 Million" style="height: 70%;">
+          <div class="bar3" data-value="$2 Million" style="height: 100%;">
+            <div class="corner3 corner-top-left3"></div>
+            <div class="corner3 corner-top-right3"></div>
+            <div class="corner3 corner-bottom-left3"></div>
+            <div class="corner3 corner-bottom-right3"></div>
+          </div>
+        </div>
+        <div class="barmain3" data-value="$2 Million" style="height: 90%;">
+          <div class="bar3" data-value="$2 Million" style="height: 100%;">
+            <div class="corner3 corner-top-left3"></div>
+            <div class="corner3 corner-top-right3"></div>
+            <div class="corner3 corner-bottom-left3"></div>
+            <div class="corner3 corner-bottom-right3"></div>
+          </div>
+        </div>
+        <div class="barmain3" data-value="$2 Million" style="height: 65%;">
+          <div class="bar3" data-value="$2 Million" style="height: 100%;">
+            <div class="corner3 corner-top-left3"></div>
+            <div class="corner3 corner-top-right3"></div>
+            <div class="corner3 corner-bottom-left3"></div>
+            <div class="corner3 corner-bottom-right3"></div>
+          </div>
+        </div>
+        <div class="barmain3" data-value="$2 Million" style="height: 80%;">
+          <div class="bar3" data-value="$2 Million" style="height: 100%;">
+            <div class="corner3 corner-top-left3"></div>
+            <div class="corner3 corner-top-right3"></div>
+            <div class="corner3 corner-bottom-left3"></div>
+            <div class="corner3 corner-bottom-right3"></div>
+          </div>
+        </div>
+        <div class="barmain3" data-value="$2 Million" style="height: 90%;">
+          <div class="bar3" data-value="$2 Million" style="height: 100%;">
+            <div class="corner3 corner-top-left3"></div>
+            <div class="corner3 corner-top-right3"></div>
+            <div class="corner3 corner-bottom-left3"></div>
+            <div class="corner3 corner-bottom-right3"></div>
+          </div>
+        </div>
+        <div class="barmain3" data-value="$2 Million" style="height: 90%;">
+          <div class="bar3" data-value="$2 Million" style="height: 100%;">
+            <div class="corner3 corner-top-left3"></div>
+            <div class="corner3 corner-top-right3"></div>
+            <div class="corner3 corner-bottom-left3"></div>
+            <div class="corner3 corner-bottom-right3"></div>
+          </div>
+        </div>
+        <div class="grid-line3 grid-line-3m3"></div>
+        <div class="grid-line3 grid-line-2m3"></div>
+        <div class="grid-line3 grid-line-1m3"></div>
+      
+      </div>
+      
+      <!-- X-Axis Labels -->
+      <div class="x-axis-labels3">
+        <span class="font-mobile3">2020</span>
+        <span class="font-mobile3">2021</span>
+        <span class="font-mobile3">2022</span>
+        <span class="font-mobile3">2023</span>
+        <span class="font-mobile3">2024</span>
+        <span class="font-mobile3">2025</span>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
